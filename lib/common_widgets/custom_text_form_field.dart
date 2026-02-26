@@ -109,97 +109,100 @@ class _CommonTextFormFieldState extends State<CommonTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      onFieldSubmitted: widget.onFieldSubmitted,
-      maxLength: widget.maxLength,
-      textInputAction: widget.textInputAction,
-      textAlign: widget.textAlign ?? TextAlign.start,
-      readOnly: widget.readOnly,
-      maxLines: widget.maxline,
-      minLines: widget.minLines,
-      focusNode: focusNode,
-      cursorColor: widget.cursorColor ?? AppColors.c000000,
-      controller: widget.controller,
-      keyboardType: widget.keyboardType,
-      obscureText: widget.obscureText,
-      onChanged: widget.onChanged,
-      validator: widget.validator,
-      decoration: InputDecoration(
-        contentPadding: widget.contentPadding,
-        // floatingLabelBehavior: FloatingLabelBehavior.auto,
-        // floatingLabelAlignment: FloatingLabelAlignment.center,
-        filled: true,
-        fillColor: widget.fillColor,
-        labelText: widget.labelText,
-        hintText: widget.hintText,
-        labelStyle:
-            widget.labelStyle ??
-            TextStyle(
-              color: const Color(0xFF919EAB),
-              fontSize: 12.sp,
-              fontFamily: 'Public Sans',
-              fontWeight: FontWeight.w400,
-            ),
-        hintStyle:
-            widget.hintStyle ??
-            TextStyle(
-              color: const Color(0xFF919EAB),
-              fontSize: 12.sp,
-              fontFamily: 'Public Sans',
-              fontWeight: FontWeight.w400,
-            ),
-        prefixIcon: widget.isPrefixIcon
-            ? Icon(
-                widget.prefixIcon,
-                color: isFocused ? AppColors.primaryColor : Colors.grey,
-              )
-            : widget.prefixIconWidget,
-        suffixIcon: widget.isSuffixIcon
-            ? Icon(
-                widget.suffixIcon,
-                color: isFocused ? AppColors.primaryColor : Colors.grey,
-              )
-            : widget.suffixIconWidget,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide.none,
-        ),
-
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: widget.isBorder == true
-              ? BorderSide(
-                  color: widget.borderColor ?? const Color(0x51919EAB),
-                  width: 1.w,
+    return SizedBox(
+      height: widget.height,
+      child: TextFormField(
+        onFieldSubmitted: widget.onFieldSubmitted,
+        maxLength: widget.maxLength,
+        textInputAction: widget.textInputAction,
+        textAlign: widget.textAlign ?? TextAlign.start,
+        readOnly: widget.readOnly,
+        maxLines: widget.maxline,
+        minLines: widget.minLines,
+        focusNode: focusNode,
+        cursorColor: widget.cursorColor ?? AppColors.c000000,
+        controller: widget.controller,
+        keyboardType: widget.keyboardType,
+        obscureText: widget.obscureText,
+        onChanged: widget.onChanged,
+        validator: widget.validator,
+        decoration: InputDecoration(
+          contentPadding: widget.contentPadding,
+          // floatingLabelBehavior: FloatingLabelBehavior.auto,
+          // floatingLabelAlignment: FloatingLabelAlignment.center,
+          filled: true,
+          fillColor: widget.fillColor,
+          labelText: widget.labelText,
+          hintText: widget.hintText,
+          labelStyle:
+              widget.labelStyle ??
+              TextStyle(
+                color: const Color(0xFF919EAB),
+                fontSize: 12.sp,
+                fontFamily: 'Public Sans',
+                fontWeight: FontWeight.w400,
+              ),
+          hintStyle:
+              widget.hintStyle ??
+              TextStyle(
+                color: const Color(0xFF919EAB),
+                fontSize: 12.sp,
+                fontFamily: 'Public Sans',
+                fontWeight: FontWeight.w400,
+              ),
+          prefixIcon: widget.isPrefixIcon
+              ? Icon(
+                  widget.prefixIcon,
+                  color: isFocused ? AppColors.primaryColor : Colors.grey,
                 )
-              : BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide(
-            color: widget.focusBorderColor ?? AppColors.primaryColor,
-            width: 1.w, // Adjust the border width if needed
+              : widget.prefixIconWidget,
+          suffixIcon: widget.isSuffixIcon
+              ? Icon(
+                  widget.suffixIcon,
+                  color: isFocused ? AppColors.primaryColor : Colors.grey,
+                )
+              : widget.suffixIconWidget,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: BorderSide.none,
           ),
+
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: widget.isBorder == true
+                ? BorderSide(
+                    color: widget.borderColor ?? const Color(0x51919EAB),
+                    width: 1.w,
+                  )
+                : BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: BorderSide(
+              color: widget.focusBorderColor ?? AppColors.primaryColor,
+              width: 1.w, // Adjust the border width if needed
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: const BorderSide(color: Colors.red),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: const BorderSide(color: Colors.red),
+          ),
+          disabledBorder: InputBorder.none,
         ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: const BorderSide(color: Colors.red),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: const BorderSide(color: Colors.red),
-        ),
-        disabledBorder: InputBorder.none,
+        style:
+            widget.textInputStyle ??
+            TextStyle(
+              color: const Color(0xFF0C0310).withValues(alpha: 0.8),
+              fontSize: 14.sp,
+              fontFamily: 'Plus Jakarta Sans',
+              fontWeight: FontWeight.w600,
+            ),
+        onTap: widget.onTap,
       ),
-      style:
-          widget.textInputStyle ??
-          TextStyle(
-            color: const Color(0xFF0C0310).withValues(alpha: 0.8),
-            fontSize: 14.sp,
-            fontFamily: 'Plus Jakarta Sans',
-            fontWeight: FontWeight.w600,
-          ),
-      onTap: widget.onTap,
     );
   }
 }

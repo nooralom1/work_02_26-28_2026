@@ -1,21 +1,19 @@
 import 'package:dio/dio.dart';
-import 'package:work_02_2026/feature/home/model/all_course_model.dart';
+import 'package:work_02_2026/feature/home/model/product_list_model.dart';
 import 'package:work_02_2026/networks/dio/dio.dart';
 import 'package:work_02_2026/networks/endpoints.dart';
 import 'package:work_02_2026/networks/exception_handler/data_source.dart';
 
-final class AllCourseListApi {
-  static final AllCourseListApi _singleton = AllCourseListApi._internal();
-  AllCourseListApi._internal();
-  static AllCourseListApi get instance => _singleton;
-
-  Future<AllCourseListModel> allCourseListApi({required String pageNo}) async {
+final class ProductListApi {
+  static final ProductListApi _singleton = ProductListApi._internal();
+  ProductListApi._internal();
+  static ProductListApi get instance => _singleton;
+  Future<List<ProductListModel>> productListApi() async {
     try {
-      Response response = await getHttp(Endpoints.allCourse(pageNo));
-
+      Response response = await getHttp(Endpoints.products());
       if (response.statusCode == 200) {
-        final data = AllCourseListModel.fromJson(response.data);
-        return data;
+        List data = response.data;
+        return data.map((e) => ProductListModel.fromJson(e)).toList();
       } else {
         throw DataSource.DEFAULT.getFailure();
       }
