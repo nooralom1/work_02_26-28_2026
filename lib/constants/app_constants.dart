@@ -1,0 +1,17 @@
+const String kKeyIsLoggedIn = 'is_logged_in';
+const String kKeyIsFirstTime = 'kKeyIsFirstTime';
+const String loggedInEmail = 'loggedInEmail';
+const String kKeyUserID = 'kKeyUserID';
+const String kKeyUserImage = 'kKeyUserImage';
+const String kKeyUserName = 'kKeyUserName';
+const String kKeyUserDOB = 'kKeyUserDOB';
+const String kKeyUserGander = 'kKeyUserGander';
+const String kKeyUserEmail = 'kKeyUserEmail';
+const String kKeyUserMobile = 'kKeyUserMobile';
+const String kKeyAccessToken = 'kKeyAccessToken';
+const String paymentUrl = 'paymentUrl';
+const String kKeyDeviceID = 'kKeyDeviceID';
+const String kKeyFCMToken = 'kKeyFCMToken';
+const String isSubscribed = "isSubscribed";
+const String hasInternet = "hasInternet";
+const String bkashPaymentUrl = "bkashPaymentUrl";
