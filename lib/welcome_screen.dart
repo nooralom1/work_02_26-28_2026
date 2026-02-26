@@ -37,7 +37,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               return Transform.scale(scale: value, child: child);
             },
             child: Image.asset(
-              Assets.images.daraz.path,
+              Assets.images.welcome.path,
               width: 300.w,
               height: 200.h,
             ),

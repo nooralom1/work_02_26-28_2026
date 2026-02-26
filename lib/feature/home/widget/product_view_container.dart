@@ -3,7 +3,7 @@
 import 'package:cached_network_image_pro/cached_network_image_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:work_02_2026/common_widgets/custom_button.dart';
+import 'package:work_02_2026/gen/colors.gen.dart';
 import 'package:work_02_2026/helpers/ui_helpers.dart';
 
 class ProductViewContainer extends StatelessWidget {
@@ -11,10 +11,9 @@ class ProductViewContainer extends StatelessWidget {
   final String title;
   final String? discountPrice;
   final String price;
-  final String? btnText;
-  final Color? btnColor;
+  final double rating;
+  final int ratingCount;
   final void Function()? onTap;
-  final void Function()? buyOnTap;
   const ProductViewContainer({
     super.key,
     required this.image,
@@ -22,9 +21,8 @@ class ProductViewContainer extends StatelessWidget {
     this.discountPrice,
     required this.price,
     this.onTap,
-    this.buyOnTap,
-    this.btnText,
-    this.btnColor,
+    required this.rating,
+    required this.ratingCount,
   });
 
   @override
@@ -36,31 +34,16 @@ class ProductViewContainer extends StatelessWidget {
         width: double.infinity,
         decoration: ShapeDecoration(
           color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(9.r),
-          ),
-          shadows: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 10,
-              spreadRadius: 2,
-              offset: Offset(0, 4),
-            ),
-          ],
+          shape: RoundedRectangleBorder(),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(9.r),
-                topRight: Radius.circular(9.r),
-              ),
-              child: CachedNetworkImagePro(
-                imgUrl: image,
-                height: 100.h,
-                width: double.infinity,
-              ),
+            CachedNetworkImagePro(
+              imgUrl: image,
+              height: 150.h,
+              width: double.infinity,
+              boxfit: BoxFit.fill,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -72,21 +55,21 @@ class ProductViewContainer extends StatelessWidget {
                     title,
                     style: TextStyle(
                       color: const Color(0xFF161C24),
-                      fontSize: 12.sp,
+                      fontSize: 14.sp,
                       fontFamily: 'Public Sans',
                       fontWeight: FontWeight.w500,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  UIHelper.verticalSpace(4.h),
+                  UIHelper.verticalSpace(6.h),
                   Row(
                     children: [
                       Text(
                         price,
                         style: TextStyle(
-                          color: const Color(0xFF212B36),
-                          fontSize: 12.sp,
+                          color: AppColors.primaryColor,
+                          fontSize: 16.sp,
                           fontFamily: 'Public Sans',
                           fontWeight: FontWeight.w600,
                         ),
@@ -105,13 +88,27 @@ class ProductViewContainer extends StatelessWidget {
                         ),
                     ],
                   ),
-                  UIHelper.verticalSpace(8.h),
-                  CustomButton(
-                    bgColor: btnColor,
-                    onTap: buyOnTap ?? () {},
-                    text: btnText ?? "",
-                    verticalPadding: 6.h,
-                    fontWeight: FontWeight.w400,
+                  UIHelper.verticalSpace(6.h),
+                  Row(
+                    children: [
+                      Icon(Icons.star, color: Colors.orangeAccent),
+                      UIHelper.horizontalSpace(4.w),
+                      Text(
+                        "$rating",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      UIHelper.horizontalSpace(6),
+                      Text(
+                        "($ratingCount)",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
                   UIHelper.verticalSpace(10.h),
                 ],

@@ -1,9 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
-const String url = "https://eduporibar.com";
-// const String url = "http://192.168.0.125:8000";
-const String imageUrl = "$url/storage/";
-const String baseUrl = "$url/";
+const String url = "https://fakestoreapi.com";
+const String imageUrl = "$url/";
 
 final class NetworkConstants {
   NetworkConstants._();
@@ -26,6 +24,6 @@ final class Endpoints {
   //manuallyPayment
   static String manuallyPayment(int id) => "/api/v1/mobile/common-order/$id";
 
-  //allCourse
-  static String allCourse(String pageNo) => "/api/v1/app-all-courses$pageNo";
+  //products
+  static String products() => "/products";
 }
