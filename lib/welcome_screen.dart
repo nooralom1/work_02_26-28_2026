@@ -37,7 +37,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               return Transform.scale(scale: value, child: child);
             },
             child: Image.asset(
-              Assets.images.welcome.path,
+              Assets.images.welcomeRemovebgPreview.path,
               width: 300.w,
               height: 200.h,
             ),

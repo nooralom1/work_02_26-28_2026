@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:work_02_2026/feature/home/presentation/home_screen.dart';
+import 'package:work_02_2026/feature/profile/presentation/profile_screen.dart';
 import 'package:work_02_2026/gen/assets.gen.dart';
 import 'package:work_02_2026/gen/colors.gen.dart';
 import 'package:work_02_2026/helpers/helper_methods.dart';
@@ -18,10 +19,7 @@ final class NavigationScreen extends StatefulWidget {
 }
 
 class _NavigationScreenState extends State<NavigationScreen> {
-  final List _screens = [
-    const HomeScreen(),
-    const Center(child: Text("Profile")),
-  ];
+  final List _screens = [const HomeScreen(), const ProfileScreen()];
   int _currentIndex = 0;
   @override
   void initState() {
