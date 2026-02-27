@@ -1,19 +1,15 @@
 // ignore_for_file: unreachable_switch_case, unused_element
 
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
+import 'package:work_02_2026/feature/authentication/login/presentation/log_in_screen.dart';
 
 final class Routes {
   static final Routes _routes = Routes._internal();
   Routes._internal();
   static Routes get instance => _routes;
   static const String login = '/login';
-  static const String signup = '/signup';
-  static const String verify = '/verify';
-  static const String forgetPass = '/forgetPass';
-  static const String forgetPassVerify = '/forgetPassVerify';
-  static const String createPass = '/createPass';
-  static const String successScreen = '/successScreen';
-  static const String navigation = '/navigation';
 }
 
 final class RouteGenerator {
@@ -23,30 +19,13 @@ final class RouteGenerator {
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      // case Routes.writtenExam:
-      //   Map arg = settings.arguments as Map;
-      //   return Platform.isAndroid
-      //       ? _FadedTransitionRoute(
-      //           widget: ScreenTitle(
-      //             widget: WrittenExamScreen(
-      //               id: arg["id"],
-      //               examSlug: arg["examSlug"],
-      //             ),
-      //           ),
-      //           settings: settings,
-      //         )
-      //       : CupertinoPageRoute(
-      //           builder: (context) =>
-      //               WrittenExamScreen(id: arg["id"], examSlug: arg["examSlug"]),
-      //         );
-
-      // case Routes.login:
-      //   return Platform.isAndroid
-      //       ? _FadedTransitionRoute(
-      //           widget: ScreenTitle(widget: LogInScreen()),
-      //           settings: settings,
-      //         )
-      //       : CupertinoPageRoute(builder: (context) => LogInScreen());
+      case Routes.login:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: ScreenTitle(widget: LogInScreen()),
+                settings: settings,
+              )
+            : CupertinoPageRoute(builder: (context) => LogInScreen());
 
       default:
         return null;

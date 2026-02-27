@@ -19,7 +19,7 @@ final class Endpoints {
   Endpoints._();
 
   //logIn
-  static String logIn() => "/api/v1/login";
+  static String logIn() => "/auth/login";
 
   //manuallyPayment
   static String manuallyPayment(int id) => "/api/v1/mobile/common-order/$id";

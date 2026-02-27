@@ -16,7 +16,6 @@ import 'package:work_02_2026/helpers/navigation_service.dart';
 import 'package:work_02_2026/helpers/register_provider.dart';
 import 'package:work_02_2026/loading_screen.dart';
 import 'package:work_02_2026/networks/dio/dio.dart';
-import 'package:work_02_2026/providers/all_providers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

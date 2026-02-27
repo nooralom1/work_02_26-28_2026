@@ -31,11 +31,19 @@ class $AssetsImagesGen {
   AssetGenImage get background =>
       const AssetGenImage('assets/images/background.png');
 
+  /// File path: assets/images/welcome-removebg-preview.png
+  AssetGenImage get welcomeRemovebgPreview =>
+      const AssetGenImage('assets/images/welcome-removebg-preview.png');
+
   /// File path: assets/images/welcome.jpg
   AssetGenImage get welcome => const AssetGenImage('assets/images/welcome.jpg');
 
   /// List of all assets
-  List<AssetGenImage> get values => [background, welcome];
+  List<AssetGenImage> get values => [
+    background,
+    welcomeRemovebgPreview,
+    welcome,
+  ];
 }
 
 class Assets {
