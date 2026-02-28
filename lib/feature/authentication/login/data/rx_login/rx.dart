@@ -39,9 +39,7 @@ final class LogInRX extends RxResponseInt<Map> {
   @override
   handleErrorWithReturn(dynamic error) {
     if (error is DioException) {
-      ToastUtil.showShortToast(
-        error.response?.data["message"] ?? "Login Failed",
-      );
+      ToastUtil.showShortToast("${error.response}");
     } else {
       ToastUtil.showShortToast("An unexpected error occurred.");
     }

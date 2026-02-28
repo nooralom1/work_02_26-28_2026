@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   flexibleSpace: FlexibleSpaceBar(
                     background: Column(
                       children: [
-                        UIHelper.verticalSpace(24.h),
+                        UIHelper.verticalSpace(16.h),
 
                         ////////////////////------- Carousel Slider ---------//////////////
                         CustomSlider(
