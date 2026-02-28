@@ -10,11 +10,12 @@ abstract class RxResponseInt<T> {
   Map? map;
   BehaviorSubject? dataFetcher2;
 
-  RxResponseInt(
-      {required this.empty,
-      required this.dataFetcher,
-      this.map,
-      this.dataFetcher2});
+  RxResponseInt({
+    required this.empty,
+    required this.dataFetcher,
+    this.map,
+    this.dataFetcher2,
+  });
 
   dynamic handleSuccessWithReturn(T data) {
     dataFetcher.sink.add(data);

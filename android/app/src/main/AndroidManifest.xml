@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="work_02_2026"
+        android:label="Product List"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

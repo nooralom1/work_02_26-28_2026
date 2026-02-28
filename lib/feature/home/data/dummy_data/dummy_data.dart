@@ -16,11 +16,3 @@ List<String> sliderImages = [
 ///////--------- Home Screen Grand Image Url -----------/////
 String grandImage =
     "https://img.lazcdn.com/us/domino/0a575696-176e-4d80-b84f-aeeb57bb2162_BD-1188-140.gif_2200x2200q80.gif_.webp";
-
-///////--------- Home Screen Category Button Name List -----------/////
-List<String> buttonNames = [
-  "All Products",
-  "Electronics",
-  "Gadget",
-  "Clothings",
-];
