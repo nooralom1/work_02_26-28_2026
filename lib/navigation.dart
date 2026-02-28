@@ -66,14 +66,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
               CustomNavigationBarItem(
                 icon: SvgPicture.asset(
                   Assets.icons.profile,
-                  color: _currentIndex == 2
+                  color: _currentIndex == 1
                       ? AppColors.primaryColor
                       : Colors.grey,
                 ),
                 title: Text(
                   "Profile",
                   style: TextStyle(
-                    color: _currentIndex == 2
+                    color: _currentIndex == 1
                         ? AppColors.primaryColor
                         : Colors.grey,
                     fontSize: 14.sp,

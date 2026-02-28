@@ -21,8 +21,8 @@ final class Endpoints {
   //logIn
   static String logIn() => "/auth/login";
 
-  //manuallyPayment
-  static String manuallyPayment(int id) => "/api/v1/mobile/common-order/$id";
+  //getProfile
+  static String getProfile() => "/users/1";
 
   //products
   static String products() => "/products";

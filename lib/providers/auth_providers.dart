@@ -6,9 +6,6 @@ class AuthProviders with ChangeNotifier {
   //////============= Global Veriables ================/////
   bool isLoading = false;
 
-  ////////// -------------- For Navigation Screen -------------- ///////////
-  int currentIndex = 0;
-
   //////============= Login ================/////
   Future<bool> loginSubmit({
     required String userName,
