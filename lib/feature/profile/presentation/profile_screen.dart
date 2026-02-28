@@ -2,15 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:work_02_2026/constants/app_constants.dart';
 import 'package:work_02_2026/feature/profile/widget/information.dart';
-import 'package:work_02_2026/feature/profile/widget/log_out_dialouge.dart';
+import 'package:work_02_2026/feature/profile/widget/login_page.dart';
+import 'package:work_02_2026/feature/profile/widget/logout_button.dart';
 import 'package:work_02_2026/feature/profile/widget/top_bar_data.dart';
 import 'package:work_02_2026/gen/colors.gen.dart';
-import 'package:work_02_2026/helpers/all_routes.dart';
 import 'package:work_02_2026/helpers/di.dart';
-import 'package:work_02_2026/helpers/navigation_service.dart';
 import 'package:work_02_2026/helpers/ui_helpers.dart';
+import 'package:work_02_2026/networks/api_access.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -21,199 +22,148 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
+  void initState() {
+    getOwnProfileRxOBJ.getOwnProfileRx();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: !appData.read(kKeyIsLoggedIn)
+          ? AppColors.primaryColor.withValues(alpha: 0.8)
+          : Color(0xffF2F5FF),
       body: appData.read(kKeyIsLoggedIn)
-          ? Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                UIHelper.verticalSpace(45.h),
-                Expanded(
-                  child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          UIHelper.verticalSpace(8.h),
-                          Center(
-                            child: TopBarData(
-                              image:
-                                  "https://eduporibar.com/storage/backend/assets/uploaded-files/additional-feature-management/our-team/4125571771486693443.jpg",
-                              name: 'Md Noor-Alom Siddik',
-                            ),
-                          ),
-                          UIHelper.verticalSpace(24.h),
-                          Text(
-                            'User Details',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          UIHelper.verticalSpace(12.h),
-                          Information(
-                            title: 'Email:',
-                            value: '110124092@itbd.com',
-                          ),
-                          Information(title: 'Phone:', value: '01707418534'),
-                          UIHelper.verticalSpace(12.h),
-                          Text(
-                            'Address',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          UIHelper.verticalSpace(12.h),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Information(title: 'City:', value: 'IT'),
-                              ),
-                              UIHelper.horizontalSpace(8.w),
-                              Expanded(
-                                child: Information(
-                                  title: 'Street:',
-                                  value: 'App Developer',
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Information(
-                                  title: 'Number:',
-                                  value: 'B*',
-                                ),
-                              ),
-                              UIHelper.horizontalSpace(8.w),
-                              Expanded(
-                                child: Information(
-                                  title: 'ZipCode:',
-                                  value: '2025-11-15',
-                                ),
-                              ),
-                            ],
-                          ),
-                          UIHelper.verticalSpace(24.h),
-                          GestureDetector(
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                barrierDismissible: false,
-                                builder: (BuildContext context) {
-                                  return const LogOutDialouge();
-                                },
-                              );
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(12.sp),
-                              decoration: BoxDecoration(
-                                color: AppColors.cFFFFFF,
-                                borderRadius: BorderRadius.circular(8.r),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.blue.withValues(alpha: 0.2),
-                                    blurRadius: 12,
-                                    offset: const Offset(0, 6),
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Logout",
-                                    style: TextStyle(
-                                      color: AppColors.primaryColor,
-                                      fontSize: 16.sp,
-                                      fontFamily: 'Plus Jakarta Sans',
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.login_outlined,
-                                    color: AppColors.primaryColor,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          UIHelper.verticalSpace(24.h),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          : Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40.w),
-                    child: Text(
-                      "এডু পরিবারের সাথে আপনার শিক্ষা জার্নি এগিয়ে যেতে এখনই লগইন করুন !",
-                      style: TextStyle(
-                        color: Colors.black.withValues(alpha: 0.8),
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  UIHelper.verticalSpace(30.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 60.w),
-                    child: GestureDetector(
-                      onTap: () {
-                        NavigationService.navigateTo(Routes.login);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.cFFFFFF,
-                          borderRadius: BorderRadius.circular(8.r),
-                          border: Border.all(width: 1.w, color: Colors.grey),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 12.h),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+          ? StreamBuilder(
+              stream: getOwnProfileRxOBJ.dataFetcher,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: SpinKitChasingDots(color: AppColors.primaryColor),
+                  );
+                }
+                if (snapshot.hasError) {
+                  return Center(child: Text("Error: ${snapshot.error}"));
+                }
+                if (snapshot.hasData) {
+                  final data = snapshot.data;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      UIHelper.verticalSpace(45.h),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          physics: BouncingScrollPhysics(),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                UIHelper.verticalSpace(8.h),
+
+                                ////////////////////------- Top data ---------//////////////
+                                Center(
+                                  child: TopBarData(
+                                    image:
+                                        "https://cdn-icons-png.freepik.com/512/10337/10337609.png",
+                                    name:
+                                        "${data?.name?.firstname} ${data?.name?.lastname}",
+                                  ),
+                                ),
+                                UIHelper.verticalSpace(24.h),
+
+                                ////////////////////------- User Details Text ---------//////////////
                                 Text(
-                                  "লগইন করতে ক্লিক করুন",
+                                  'User Details',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: AppColors.primaryColor,
                                     fontSize: 16.sp,
-                                    fontFamily: 'Public Sans',
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                UIHelper.horizontalSpace(12.w),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: AppColors.primaryColor,
+                                UIHelper.verticalSpace(12.h),
+
+                                ////////////////////------- Email ---------//////////////
+                                Information(
+                                  title: 'Email:',
+                                  value: data?.email ?? "",
                                 ),
+
+                                ////////////////////------- Phone ---------//////////////
+                                Information(
+                                  title: 'Phone:',
+                                  value: data?.phone ?? "",
+                                ),
+                                UIHelper.verticalSpace(12.h),
+
+                                ////////////////////------- Address Text ---------//////////////
+                                Text(
+                                  'Address',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: AppColors.primaryColor,
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                UIHelper.verticalSpace(12.h),
+
+                                ////////////////////------- City Street ---------//////////////
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Information(
+                                        title: 'City:',
+                                        value: data?.address?.city ?? "",
+                                      ),
+                                    ),
+                                    UIHelper.horizontalSpace(8.w),
+                                    Expanded(
+                                      child: Information(
+                                        title: 'Street:',
+                                        value: data?.address?.street ?? "",
+                                      ),
+                                    ),
+                                  ],
+                                ),
+
+                                ////////////////////------- Number ZipCode ---------//////////////
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Information(
+                                        title: 'Number:',
+                                        value: "${data?.address?.number}",
+                                      ),
+                                    ),
+                                    UIHelper.horizontalSpace(8.w),
+                                    Expanded(
+                                      child: Information(
+                                        title: 'ZipCode:',
+                                        value: data?.address?.zipcode ?? "",
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                UIHelper.verticalSpace(24.h),
+
+                                ////////////////////------- LogOut Button ---------//////////////
+                                LogOutButton(),
+                                UIHelper.verticalSpace(24.h),
                               ],
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                    ],
+                  );
+                } else {
+                  return const Center(child: Text("No Data Available"));
+                }
+              },
+            )
+          : LoginPage(),
     );
   }
 }

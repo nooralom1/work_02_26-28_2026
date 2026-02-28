@@ -88,9 +88,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
                       //////-------------- TabBar List --------------////////
                       tabs: const [
-                        Tab(text: "All"),
+                        Tab(text: "All Products"),
                         Tab(text: "Electronics"),
-                        Tab(text: "Clothes"),
+                        Tab(text: "Jewelery"),
                       ],
                     ),
                   ),
