@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import '../exception_handler/data_source.dart';
 
